@@ -1,15 +1,15 @@
 ---
-title: Setup Callbacks With REF And OUT Parameters
-page_title: Setup Callbacks With REF And OUT Parameters | JustMock Documentation
-description: Setup Callbacks With REF And OUT Parameters
+title: Setup REF And OUT Parameters
+page_title: Setup REF And OUT Parameters | JustMock Documentation
+description: Setup REF And OUT Parameters
 previous_url: /scenarios-setup-callbacks-with-ref-and-out-parameters.html
 slug: justmock/scenarios/setup-callbacks-with-ref-and-out-parameters
-tags: setup,callbacks,with,ref,and,out,parameters
+tags: setup,with,ref,and,out,parameters
 published: True
 position: 0
 ---
 
-# Setup Callbacks With REF And OUT Parameters
+# Setup REF And OUT Parameters
 
 By using __Telerik® JustMock__ you can mock methods that take `out` or `ref` parameters.
 
