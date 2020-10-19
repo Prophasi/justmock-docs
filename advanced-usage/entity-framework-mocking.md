@@ -155,14 +155,25 @@ In the next example we will __Arrange__ the calling of the `Add()` method to act
   
   {{region EntityFramework#FakingAdd}}
 	[TestMethod]
-	public void ShouldReturnFakeCollectionForFutureInstance()
-	{
-	    NerdDinners nerdDinners = new NerdDinners();
-	
-	    Mock.Arrange(() => nerdDinners.Dinners).IgnoreInstance().ReturnsCollection(FakeDinners());
-	
-	    Assert.AreEqual(1, new DinnerRepository().GetById(1).DinnerID);
-	}	
+        public void ShouldFakeAddingNewEntityToContext()
+        {
+            var dinner = new Dinner { DinnerID = 1 };
+
+            IList<Dinner> dinners = new List<Dinner>();
+
+            // ARRANGE
+            NerdDinners nerdDinners = new NerdDinners();
+			Mock.Arrange(() => nerdDinners.Dinners.Add(dinner)).DoInstead((Dinner d) => dinners.Add(d));
+			Mock.Arrange(() => nerdDinners.SaveChanges()).DoNothing();
+
+            // ACT
+            nerdDinners.Dinners.Add(dinner);
+            nerdDinners.SaveChanges();
+
+            // ASSERT
+            Assert.AreEqual(1, dinners.Count);
+            Assert.AreEqual(1, dinners[0].DinnerID);
+        }
   {{endregion}}
 
 Here are the steps:
